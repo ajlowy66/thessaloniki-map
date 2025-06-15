@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Thessaloniki WWII Jewish Sites Map - Corrected</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    #map {
+      height: 100vh;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    const map = L.map('map').setView([40.6401, 22.9444], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    const sites = [
+      { name: 'Old Baron Hirsch Ghetto', coords: [40.6388, 22.9266] },
+      { name: 'Jewish Museum of Thessaloniki', coords: [40.6378, 22.9408] },
+      { name: 'Pliata Eleftherias (Freedom Square)', coords: [40.6359, 22.9403] },
+      { name: 'White Tower', coords: [40.6264, 22.9514] },
+      { name: 'Train Station (WWII Deportation Site)', coords: [40.6443, 22.9147] },
+      { name: 'Reggi Vardar Area', coords: [40.6420, 22.9170] },
+      { name: 'Former Residence of Estrongo Nachama (corrected)', coords: [40.6175, 22.9613] },
+      { name: 'Site of Aristotle University (on Jewish Cemetery)', coords: [40.6291, 22.9577] }
+    ];
+
+    sites.forEach(site => {
+      L.marker(site.coords).addTo(map).bindPopup(`<strong>${site.name}</strong>`);
+    });
+  </script>
+</body>
+</html>
